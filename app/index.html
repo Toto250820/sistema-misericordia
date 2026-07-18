@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sistema Misericordia</title>
+<meta name="theme-color" content="#2B3A55">
+<link rel="manifest" href="manifest.json">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Zilla+Slab:wght@500;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="app-header">
+  <div class="brand">
+    <span class="brand-mark">MC</span>
+    <div>
+      <h1>Sistema Misericordia</h1>
+      <p class="brand-sub">Pedidos · Stock · Despachos</p>
+    </div>
+  </div>
+  <nav class="tabs" id="tabs">
+    <button class="tab-btn active" data-tab="dashboard">Dashboard</button>
+    <button class="tab-btn" data-tab="pedidos">Pedidos</button>
+    <button class="tab-btn" data-tab="stock">Stock</button>
+  </nav>
+</header>
+
+<main>
+
+  <!-- DASHBOARD -->
+  <section id="tab-dashboard" class="tab-panel active">
+    <div class="kpi-row" id="kpiRow">
+      <div class="kpi-card"><span class="kpi-value" id="kpiTotal">–</span><span class="kpi-label">Ítems totales</span></div>
+      <div class="kpi-card"><span class="kpi-value" id="kpiCargados">–</span><span class="kpi-label">Cargados</span></div>
+      <div class="kpi-card"><span class="kpi-value" id="kpiPendientes">–</span><span class="kpi-label">Pendientes</span></div>
+      <div class="kpi-card kpi-accent"><span class="kpi-value" id="kpiPct">–</span><span class="kpi-label">% cargado</span></div>
+    </div>
+
+    <div class="grid-2">
+      <div class="panel">
+        <h2>Top 10 artículos despachados</h2>
+        <table class="data-table" id="tableTop">
+          <thead><tr><th>Código</th><th>Descripción</th><th>Unidades</th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+      <div class="panel">
+        <h2>Ítems por transporte</h2>
+        <table class="data-table" id="tableTransporte">
+          <thead><tr><th>Transporte</th><th>Ítems</th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- PEDIDOS -->
+  <section id="tab-pedidos" class="tab-panel">
+    <div class="panel-header-row">
+      <h2>Pedidos</h2>
+      <input type="search" id="pedidosSearch" placeholder="Buscar N° de pedido o cliente…">
+    </div>
+    <table class="data-table" id="tablePedidos">
+      <thead>
+        <tr>
+          <th>N° Pedido</th><th>Cliente</th><th>Destino</th><th>Estado</th>
+          <th>Ítems</th><th>Despachados</th><th>Ingreso</th><th>Completado</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </section>
+
+  <!-- STOCK -->
+  <section id="tab-stock" class="tab-panel">
+    <div class="panel-header-row">
+      <h2>Stock por ubicación</h2>
+      <input type="search" id="stockSearch" placeholder="Buscar artículo…">
+    </div>
+    <table class="data-table" id="tableStock">
+      <thead>
+        <tr><th>Código</th><th>Descripción</th><th>Categoría</th><th>Stock A</th><th>Stock B (IDUO)</th><th>Stock GE</th><th>Total</th></tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </section>
+
+</main>
+
+<footer class="app-footer">
+  <span id="connStatus">conectando con Supabase…</span>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="js/supabaseClient.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
