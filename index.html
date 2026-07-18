@@ -24,6 +24,8 @@
     <button class="tab-btn active" data-tab="dashboard">Dashboard</button>
     <button class="tab-btn" data-tab="pedidos">Pedidos</button>
     <button class="tab-btn" data-tab="stock">Stock</button>
+    <button class="tab-btn" data-tab="zonafranca">Zona Franca</button>
+    <button class="tab-btn" data-tab="guiacarga">Guía de Carga</button>
   </nav>
 </header>
 
@@ -82,6 +84,43 @@
     <table class="data-table" id="tableStock">
       <thead>
         <tr><th>Código</th><th>Descripción</th><th>Categoría</th><th>Stock A</th><th>Stock B (IDUO)</th><th>Stock GE</th><th>Total</th></tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </section>
+
+  <!-- ZONA FRANCA -->
+  <section id="tab-zonafranca" class="tab-panel">
+    <div class="panel-header-row">
+      <h2>Salidas de Zona Franca</h2>
+      <input type="search" id="zfSearch" placeholder="Buscar N° salida, artículo o cliente…">
+    </div>
+    <table class="data-table" id="tableZF">
+      <thead>
+        <tr>
+          <th>N° Salida</th><th>N° ZFE</th><th>Fecha</th><th>Código</th><th>Descripción</th>
+          <th>Familia CTZF</th><th>Destino</th><th>Bultos</th><th>Unidades</th><th>Pallets</th><th>Cliente</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </section>
+
+  <!-- GUIA DE CARGA -->
+  <section id="tab-guiacarga" class="tab-panel">
+    <div class="panel-header-row">
+      <h2>Guías de carga</h2>
+      <input type="search" id="guiaSearch" placeholder="Buscar transporte, pedido o cliente…">
+    </div>
+    <table class="data-table" id="tableGuiaResumen">
+      <thead><tr><th>Transporte</th><th>Fecha</th><th>Estado</th><th>Ítems</th><th>Validados en GE</th></tr></thead>
+      <tbody></tbody>
+    </table>
+
+    <h2 style="margin-top:24px;">Detalle</h2>
+    <table class="data-table" id="tableGuiaDetalle">
+      <thead>
+        <tr><th>Transporte</th><th>Fecha</th><th>Pedido</th><th>Cliente</th><th>Código</th><th>Descripción</th><th>Unidades</th><th>Bultos</th><th>Destino</th><th>Validado GE</th></tr>
       </thead>
       <tbody></tbody>
     </table>

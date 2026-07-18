@@ -9,15 +9,17 @@ web estática, con el mismo esquema de trabajo que ya usás en ALAV COMEX
 
 ```
 sistema-misericordia/
-├── supabase/
-│   ├── schema.sql              -- tablas, vistas y triggers (correr primero)
-│   └── migrate_from_excel.py   -- genera seed.sql desde tu planilla actual
-└── app/
-    ├── index.html
-    ├── css/style.css
-    ├── js/supabaseClient.js    -- ⚠️ acá van tus credenciales
-    ├── js/app.js
-    └── manifest.json
+├── index.html
+├── manifest.json
+├── css/style.css
+├── js/
+│   ├── supabaseClient.js       -- ⚠️ acá van tus credenciales
+│   └── app.js
+├── README.md
+└── supabase/
+    ├── schema.sql                        -- tablas, vistas y triggers (correr primero)
+    ├── migracion_02_vistas_zf_guia.sql   -- vistas de Zona Franca / Guía de Carga
+    └── migrate_from_excel.py             -- genera seed.sql desde tu planilla actual
 ```
 
 ## Puesta en marcha (paso a paso)
@@ -46,7 +48,7 @@ Esto genera `seed.sql`. Pegalo en el SQL Editor de Supabase → **Run**.
 > así que no depende de que la fórmula de Google Sheets haya recalculado.
 
 ### 4. Conectar la app a tu proyecto
-Abrí `app/js/supabaseClient.js` y completá:
+Abrí `js/supabaseClient.js` y completá:
 ```js
 const SUPABASE_URL = "https://TU-PROYECTO.supabase.co";
 const SUPABASE_ANON_KEY = "TU-ANON-KEY";
@@ -64,7 +66,7 @@ git push -u origin main
 ```
 Después, en el repo de GitHub: **Settings → Pages → Deploy from branch →
 main / (root)**. Quedará publicada en
-`https://TU-USUARIO.github.io/sistema-misericordia/app/`.
+`https://TU-USUARIO.github.io/sistema-misericordia/`.
 
 ## Qué trae esta primera versión
 
@@ -80,10 +82,14 @@ main / (root)**. Quedará publicada en
 - Formularios para cargar pedidos nuevos y editar stock desde la app
   (hoy la carga es solo lectura; se edita por SQL Editor o Table Editor
   de Supabase).
-- Pantallas de Zona Franca (`salidas_zf`) y Guía de Carga.
-- Autenticación por usuario (Marina, Carina, etc.) con RLS por rol —
+- Login por usuario (Marina, Carina, etc.) con RLS por rol —
   hoy el RLS está deshabilitado a propósito, igual que en ALAV COMEX,
   para que no bloquee escrituras en esta primera etapa.
 - PWA completa (íconos, instalable en el celular).
 
-Cuando quieras seguimos con cualquiera de estos puntos.
+## Historial de migraciones
+
+- `supabase/schema.sql` — esquema inicial (correr primero, una sola vez).
+- `supabase/migracion_02_vistas_zf_guia.sql` — agrega las vistas que usan
+  las pantallas de Zona Franca y Guía de Carga. Correr una vez, después
+  del schema inicial. No borra ni modifica nada existente.
